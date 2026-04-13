@@ -5,7 +5,6 @@ function createGrid(gridSize) {
 
   for (let i = 0; i < gridSize * gridSize; i++) {
     const gridSquare = document.createElement("div");
-    console.log(gridSize);
     grid.style.gridTemplateColumns = "repeat(" + gridSize + ", 1fr)";
     grid.style.gridTemplateRows = "repeat(" + gridSize + ", 1fr)";
     gridSquare.classList.add("grid-square");
@@ -36,8 +35,13 @@ function generateNewGrid() {
     let gridSize = prompt("Number of Squares Per Side");
 
     // Guarding the input of the gridSize
-    while (gridSize === null || gridSize > 100 || gridSize < 1) {
-      gridSize = prompt("Must be a valid value between 1-100");
+    while (
+      gridSize === null ||
+      gridSize > 100 ||
+      gridSize < 1 ||
+      !Number.isInteger(+gridSize) //Using + infront of the parameter, changes it from a string input to a integer
+    ) {
+      gridSize = prompt("Must be a valid integer value between 1-100");
     }
 
     createGrid(gridSize);
