@@ -24,6 +24,14 @@ function mouseHoverOverGrid() {
       const randomBlue = Math.floor(Math.random() * 257);
       element.style.backgroundColor =
         "rgb(" + [randomRed, randomGreen, randomBlue].join(",") + ")";
+      let currentBrightness = element.dataset.brightness || 100;
+      currentBrightness = parseInt(currentBrightness) - 10;
+      console.log(currentBrightness);
+      if (currentBrightness >= 0) {
+        element.style.filter = `brightness(${currentBrightness}%)`;
+        element.dataset.brightness = currentBrightness;
+        console.log(element.dataset.brightness);
+      }
     });
   });
 }
